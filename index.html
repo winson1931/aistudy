@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI技能树 - 人工智能学习导航平台</title>
+    <style>
+        :root {
+            --primary: #2A5CAA;
+            --secondary: #6C43BF;
+            --accent: #FF6B6B;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', system-ui;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        /* 顶部导航 */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            padding: 1rem 5%;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 主视觉区 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 60%);
+            opacity: 0.1;
+            animation: pulse 8s infinite;
+        }
+
+        /* 核心功能卡片 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5%;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* 动态分类 */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 2rem 5%;
+        }
+
+        .category-card {
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="logo">AI技能树</div>
+        <div style="flex-grow: 1;"></div>
+        <div>
+            <button>登录</button>
+            <button style="background: var(--primary); color: white;">注册</button>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 style="font-size: 3rem; margin-bottom: 2rem;">
+                构建你的AI超能力图谱
+            </h1>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <button style="padding: 1rem 2rem; background: var(--primary); color: white; border: none; border-radius: 8px;">
+                    🚀 智能学习诊断
+                </button>
+                <button style="padding: 1rem 2rem; background: var(--secondary); color: white; border: none; border-radius: 8px;">
+                    🔍 探索技能森林
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <div class="feature-grid">
+        <div class="card">
+            <h3>🎨 AI艺术工坊</h3>
+            <p>Stable Diffusion在线生成器</p>
+            <div class="live-counter">🔥 238人正在创作</div>
+        </div>
+        
+        <div class="card">
+            <h3>🤖 智能体实验室</h3>
+            <p>强化学习沙盒环境</p>
+            <div class="badge">新手推荐</div>
+        </div>
+    </div>
+
+    <!-- 分类导航 -->
+    <div class="category-grid">
+        <div class="category-card">
+            <h3>🔧 工程化部署</h3>
+            <p>模型本地化/生产集成</p>
+        </div>
+        <div class="category-card">
+            <h3>💰 变现指南</h3>
+            <p>从技能到收益的路径</p>
+        </div>
+        <div class="category-card">
+            <h3>🌐 前沿动态</h3>
+            <p>每日AI领域热点追踪</p>
+        </div>
+    </div>
+
+    <script>
+        // 动态交互逻辑
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                alert('功能模块正在开发中，敬请期待！');
+            });
+        });
+
+        // 分类导航动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
